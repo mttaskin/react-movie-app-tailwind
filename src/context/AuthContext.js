@@ -52,7 +52,7 @@ import {
       createUser,
       signIn,
       logOut,
-      currentUser: { displayName: "felix franko" },
+      currentUser: { displayName: "mehmet TAŞKIN" },
     };
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
   };
