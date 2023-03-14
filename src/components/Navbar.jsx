@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png";
 import { AuthContext } from "../context/AuthContext";
+import Switch from "./Switch";
 
 const Navbar = () => {
   const { currentUser, logOut } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const Navbar = () => {
             {currentUser && (
               <h5 className="mr-2 capitalize">{currentUser.displayName}</h5>
             )}
+            <Switch />
             <div className="relative" data-te-dropdown-ref="">
               <span
                 className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
