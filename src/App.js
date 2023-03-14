@@ -6,7 +6,7 @@ import MovieContextProvider from "./context/MovieContext";
 
 const App = () => {
   return (
-    <div  className="dark:bg-gray-dark-main">
+    <div className="dark:bg-gray-dark-main">
       <AuthContextProvider>
         <MovieContextProvider>
           <AppRouter />
