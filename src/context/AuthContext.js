@@ -6,6 +6,7 @@ import {
   import React, { createContext } from "react";
   import { useNavigate } from "react-router-dom";
   import { auth } from "../auth/firebase";
+import { toastSuccessNotify } from "../helper/ToastNotify";
   
   // export const {Provider} = createContext()
   export const AuthContext = createContext();
@@ -39,6 +40,7 @@ import {
       try {
         await signInWithEmailAndPassword(auth, email, password);
         navigate("/");
+        toastSuccessNotify("Logged in successfully!")
       } catch (error) {
         console.log(error);
       }
