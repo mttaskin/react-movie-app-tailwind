@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -10,7 +11,11 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../auth/firebase";
-import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helpers/ToastNotify";
 
 // export const {Provider} = createContext()
 export const AuthContext = createContext();
@@ -104,11 +109,26 @@ const AuthContextProvider = ({ children }) => {
       });
   };
 
+  const forgotPassword = (email) => {
+    //? Email yoluyla şifre sıfırlama için kullanılan firebase metodu
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        toastWarnNotify("Please check your mail box!");
+        // alert("Please check your mail box!");
+      })
+      .catch((err) => {
+        toastErrorNotify(err.message);
+        // alert(err.message);
+        // ..
+      });
+  };
   const values = {
     createUser,
     signIn,
     logOut,
     signUpProvider,
+    forgotPassword,
     currentUser,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
